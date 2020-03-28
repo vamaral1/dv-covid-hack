@@ -389,7 +389,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `PandemicDB`;
-INSERT INTO `cleaning_product` (`id`, `agent`, `concentration`, `name`, `volume`, `UPC`) VALUES (1, 'Test Agent 409', 0.98, 'Giddy up, Giddy up', 1.0, '83345773219');
+INSERT INTO `cleaning_product` (`id`, `agent`, `concentration`, `name`, `volume`, `UPC`) VALUES (1, 'Test Agent 409', 0.98, 'Giddy up, giddy up', 1.0, '83345773219');
+INSERT INTO `cleaning_product` (`id`, `agent`, `concentration`, `name`, `volume`, `UPC`) VALUES (2, 'Bleach', 1.00, 'Clorox', 3, '23848342932');
 
 COMMIT;
 
@@ -400,6 +401,27 @@ COMMIT;
 START TRANSACTION;
 USE `PandemicDB`;
 INSERT INTO `facility_cleaning_product` (`facility_id`, `cleaning_product_id`, `quantity`) VALUES (1, 1, 42);
+INSERT INTO `facility_cleaning_product` (`facility_id`, `cleaning_product_id`, `quantity`) VALUES (1, 2, 29);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mask`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `mask` (`id`, `improvised`, `name`, `rating`, `reusable`, `type`, `UPC`) VALUES (1, 0, 'Tester mask', 'top-notch', 1, 'whole face', '84473658462');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility_mask`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility_mask` (`facility_id`, `mask_id`, `quantity`) VALUES (1, 1, 10);
 
 COMMIT;
 
