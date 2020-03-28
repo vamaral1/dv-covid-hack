@@ -59,6 +59,7 @@ DROP TABLE IF EXISTS `personal_protective_equipment` ;
 
 CREATE TABLE IF NOT EXISTS `personal_protective_equipment` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `improvised` TINYINT NULL,
   `name` VARCHAR(45) NOT NULL,
   `powdered` TINYINT NULL,
   `reusable` TINYINT NULL,
@@ -80,11 +81,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `enabled` TINYINT NOT NULL,
   `role` VARCHAR(45) NOT NULL,
-  `hospital_id` INT NOT NULL,
+  `facility_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_hospital_idx` (`hospital_id` ASC),
+  INDEX `fk_user_hospital_idx` (`facility_id` ASC),
   CONSTRAINT `fk_user_hospital`
-    FOREIGN KEY (`hospital_id`)
+    FOREIGN KEY (`facility_id`)
     REFERENCES `facility` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -138,14 +139,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `facility_cleaning_product` ;
 
 CREATE TABLE IF NOT EXISTS `facility_cleaning_product` (
-  `facility_cleaning_product_id` INT NOT NULL,
+  `facility_id` INT NOT NULL,
   `cleaning_product_id` INT NOT NULL,
   `quantity` INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`facility_cleaning_product_id`, `cleaning_product_id`),
+  PRIMARY KEY (`facility_id`, `cleaning_product_id`),
   INDEX `fk_hospital_has_cleaning_product_cleaning_product1_idx` (`cleaning_product_id` ASC),
-  INDEX `fk_hospital_has_cleaning_product_hospital1_idx` (`facility_cleaning_product_id` ASC),
+  INDEX `fk_hospital_has_cleaning_product_hospital1_idx` (`facility_id` ASC),
   CONSTRAINT `fk_hospital_has_cleaning_product_hospital1`
-    FOREIGN KEY (`facility_cleaning_product_id`)
+    FOREIGN KEY (`facility_id`)
     REFERENCES `facility` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -164,6 +165,7 @@ DROP TABLE IF EXISTS `mask` ;
 
 CREATE TABLE IF NOT EXISTS `mask` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `improvised` TINYINT NULL,
   `name` VARCHAR(45) NULL,
   `rating` VARCHAR(45) NULL,
   `reusable` TINYINT NULL,
@@ -217,14 +219,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `facility_open_bed` ;
 
 CREATE TABLE IF NOT EXISTS `facility_open_bed` (
-  `hospital_id` INT NOT NULL,
+  `facility_id` INT NOT NULL,
   `bed_id` INT NOT NULL,
   `quantity` INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`hospital_id`, `bed_id`),
+  PRIMARY KEY (`facility_id`, `bed_id`),
   INDEX `fk_hospital_has_bed_bed1_idx` (`bed_id` ASC),
-  INDEX `fk_hospital_has_bed_hospital1_idx` (`hospital_id` ASC),
+  INDEX `fk_hospital_has_bed_hospital1_idx` (`facility_id` ASC),
   CONSTRAINT `fk_hospital_has_bed_hospital1`
-    FOREIGN KEY (`hospital_id`)
+    FOREIGN KEY (`facility_id`)
     REFERENCES `facility` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -263,11 +265,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `facility_test`
+-- Table `facility_test_kit`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `facility_test` ;
+DROP TABLE IF EXISTS `facility_test_kit` ;
 
-CREATE TABLE IF NOT EXISTS `facility_test` (
+CREATE TABLE IF NOT EXISTS `facility_test_kit` (
   `facility_id` INT NOT NULL,
   `test_id` INT NOT NULL,
   `quantity` INT NOT NULL DEFAULT 0,
@@ -378,6 +380,26 @@ COMMIT;
 START TRANSACTION;
 USE `PandemicDB`;
 INSERT INTO `facility` (`id`, `name`, `address_id`) VALUES (1, 'Swedish Hospital', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `cleaning_product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `cleaning_product` (`id`, `agent`, `concentration`, `name`, `volume`, `UPC`) VALUES (1, 'Test Agent 409', 0.98, 'Giddy up, Giddy up', 1.0, '83345773219');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility_cleaning_product`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility_cleaning_product` (`facility_id`, `cleaning_product_id`, `quantity`) VALUES (1, 1, 42);
 
 COMMIT;
 

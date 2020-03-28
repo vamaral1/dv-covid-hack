@@ -1,10 +1,14 @@
 package com.pandemicsupply.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Facility {
@@ -16,6 +20,18 @@ public class Facility {
 	private int addressId;
 	private String name;
 	
+	@OneToMany(mappedBy = "facility")
+	private List<FacilityCleaningProduct> facilityCleaningProducts;
+	
+	public List<FacilityCleaningProduct> getFacilityCleaningProducts() {
+		return facilityCleaningProducts;
+	}
+	public void setFacilityCleaningProducts(List<FacilityCleaningProduct> facilityCleaningProducts) {
+		this.facilityCleaningProducts = facilityCleaningProducts;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}
@@ -36,6 +52,7 @@ public class Facility {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + addressId;
+		result = prime * result + ((facilityCleaningProducts == null) ? 0 : facilityCleaningProducts.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -50,6 +67,11 @@ public class Facility {
 			return false;
 		Facility other = (Facility) obj;
 		if (addressId != other.addressId)
+			return false;
+		if (facilityCleaningProducts == null) {
+			if (other.facilityCleaningProducts != null)
+				return false;
+		} else if (!facilityCleaningProducts.equals(other.facilityCleaningProducts))
 			return false;
 		if (id != other.id)
 			return false;

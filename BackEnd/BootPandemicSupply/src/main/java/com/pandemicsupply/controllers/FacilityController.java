@@ -9,7 +9,7 @@ import com.pandemicsupply.daos.FacilityDAO;
 import com.pandemicsupply.entities.Facility;
 
 @RestController
-@RequestMapping(path = "api")
+@RequestMapping(path = "srsapi")
 public class FacilityController {
 
 	@Autowired
