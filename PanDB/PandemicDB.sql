@@ -16,15 +16,39 @@ CREATE SCHEMA IF NOT EXISTS `PandemicDB` DEFAULT CHARACTER SET utf8 ;
 USE `PandemicDB` ;
 
 -- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `address` ;
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `city` VARCHAR(45) NULL,
+  `latitude` DOUBLE NULL,
+  `longitude` DOUBLE NULL,
+  `phone` VARCHAR(45) NULL,
+  `postal_code` VARCHAR(45) NULL,
+  `state_province` VARCHAR(45) NULL,
+  `street` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `facility`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `facility` ;
 
 CREATE TABLE IF NOT EXISTS `facility` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `address_id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+  `address_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_facility_address1_idx` (`address_id` ASC),
+  CONSTRAINT `fk_facility_address`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -37,8 +61,10 @@ CREATE TABLE IF NOT EXISTS `personal_protective_equipment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `powdered` TINYINT NULL,
+  `reusable` TINYINT NULL,
   `size` ENUM('XS', 'S', 'M', 'L', 'XL') NULL,
   `type` VARCHAR(45) NULL,
+  `UPC` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -66,11 +92,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `facility_inventory_item`
+-- Table `facility_ppe`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `facility_inventory_item` ;
+DROP TABLE IF EXISTS `facility_ppe` ;
 
-CREATE TABLE IF NOT EXISTS `facility_inventory_item` (
+CREATE TABLE IF NOT EXISTS `facility_ppe` (
   `facility_id` INT NOT NULL,
   `ppe_id` INT NOT NULL,
   `quantity` INT NOT NULL DEFAULT 0,
@@ -101,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `cleaning_product` (
   `concentration` DOUBLE NULL,
   `name` VARCHAR(45) NULL,
   `volume` DOUBLE NULL,
+  `UPC` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -138,9 +165,10 @@ DROP TABLE IF EXISTS `mask` ;
 CREATE TABLE IF NOT EXISTS `mask` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `type` VARCHAR(45) NULL,
   `rating` VARCHAR(45) NULL,
   `reusable` TINYINT NULL,
+  `type` VARCHAR(45) NULL,
+  `UPC` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -184,11 +212,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `facility_bed`
+-- Table `facility_open_bed`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `facility_bed` ;
+DROP TABLE IF EXISTS `facility_open_bed` ;
 
-CREATE TABLE IF NOT EXISTS `facility_bed` (
+CREATE TABLE IF NOT EXISTS `facility_open_bed` (
   `hospital_id` INT NOT NULL,
   `bed_id` INT NOT NULL,
   `quantity` INT NOT NULL DEFAULT 0,
@@ -229,6 +257,7 @@ DROP TABLE IF EXISTS `test` ;
 CREATE TABLE IF NOT EXISTS `test` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NOT NULL,
+  `UPC` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -268,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `ventilator` (
   `make` VARCHAR(45) NULL,
   `model` VARCHAR(45) NULL,
   `invasive` TINYINT NULL,
+  `UPC` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -321,24 +351,6 @@ CREATE TABLE IF NOT EXISTS `facility_ventilator` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `address`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `address` ;
-
-CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `city` VARCHAR(45) NULL,
-  `latitude` DOUBLE NULL,
-  `longitude` DOUBLE NULL,
-  `phone` VARCHAR(45) NULL,
-  `postal_code` VARCHAR(45) NULL,
-  `state_province` VARCHAR(45) NULL,
-  `street` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
 SET SQL_MODE = '';
 DROP USER IF EXISTS pandemicuser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -349,3 +361,23 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'pandemicuser'@'loca
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `address` (`id`, `city`, `latitude`, `longitude`, `phone`, `postal_code`, `state_province`, `street`) VALUES (1, 'Englewood', NULL, NULL, NULL, '80113', 'Colorado', '501 E Hampden Avenue');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility` (`id`, `name`, `address_id`) VALUES (1, 'Swedish Hospital', 1);
+
+COMMIT;
+
