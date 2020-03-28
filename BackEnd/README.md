@@ -15,5 +15,5 @@
 `srsapi/facilities/{fid}` - Single `Facility` by id.
 
 #### Cleaning Products
-`cleaningProducts/{cpid}` - Single `CleaningProduct` by its id.
+`srsapi/cleaningProducts/{cpid}` - Single `CleaningProduct` by its id.  
 `srsapi/facilities/{fid}/cleaningProducts/{cpid}` - `FacilityCleaningProduct` by facility id and cleaning product id.
