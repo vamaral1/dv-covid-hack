@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PandemicSupplyAngular"
+    }
+  },
+  "defaultProject": "PandemicSupplyAngular",
+  "cli": {
+    "analytics": "d0681799-c4d3-469d-a8b5-7e9ebe6df5d6"
+  }
 }
