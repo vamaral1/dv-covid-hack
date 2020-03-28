@@ -15,9 +15,9 @@ public class FacilityController {
 	@Autowired
 	private FacilityDAO facilityDao;
 	
-	@RequestMapping(path = "facilities/{id}" )
-	public Facility findById(@PathVariable int id) {
-		return facilityDao.findFacilityById(id);
+	@RequestMapping(path = "facilities/{fid}" )
+	public Facility findById(@PathVariable int fid) {
+		return facilityDao.findFacilityById(fid);
 	}
 	
 }

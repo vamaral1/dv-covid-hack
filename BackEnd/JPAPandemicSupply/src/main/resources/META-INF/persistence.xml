@@ -8,7 +8,11 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 
+	<class>com.pandemicsupply.entities.CleaningProduct</class>
 	<class>com.pandemicsupply.entities.Facility</class>
+	<class>com.pandemicsupply.entities.FacilityCleaningProduct</class>
+	<class>com.pandemicsupply.entities.FacilityMask</class>
+	<class>com.pandemicsupply.entities.Mask</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pandemicdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />

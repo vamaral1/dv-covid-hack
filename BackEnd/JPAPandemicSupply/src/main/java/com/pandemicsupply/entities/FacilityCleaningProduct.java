@@ -42,6 +42,14 @@ public class FacilityCleaningProduct {
 		this.quantity = quantity;
 	}
 
+	public CleaningProduct getCleaningProduct() {
+		return cleaningProduct;
+	}
+
+	public void setCleaningProduct(CleaningProduct cleaningProduct) {
+		this.cleaningProduct = cleaningProduct;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,6 +86,7 @@ public class FacilityCleaningProduct {
 		builder.append(", quantity=");
 		builder.append(quantity);
 		builder.append("]");
+		builder.append("\nCleaning product name: " + cleaningProduct.getName());
 		return builder.toString();
 	}
 	

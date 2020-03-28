@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import com.pandemicsupply.entities.CleaningProduct;
 import com.pandemicsupply.entities.Facility;
 import com.pandemicsupply.entities.FacilityCleaningProduct;
-import com.pandemicsupply.repository.CleaningProductRepo;
-import com.pandemicsupply.repository.FacilityCleaningProductRepository;
-import com.pandemicsupply.repository.FacilityRepository;
+import com.pandemicsupply.repositories.CleaningProductRepo;
+import com.pandemicsupply.repositories.FacilityCleaningProductRepository;
+import com.pandemicsupply.repositories.FacilityRepository;
 
 @Service
 public class CleaningProductDAOImpl implements CleaningProductDAO {

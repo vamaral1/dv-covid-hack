@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pandemicsupply.entities.Facility;
-import com.pandemicsupply.repository.FacilityRepository;
+import com.pandemicsupply.repositories.FacilityRepository;
 
 @Service
 public class FacilityDAOIpml implements FacilityDAO {

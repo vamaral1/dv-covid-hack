@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cleaning_product")
 public class CleaningProduct {
@@ -22,6 +24,7 @@ public class CleaningProduct {
 	private Double volume;
 	private String UPC;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cleaningProduct")
 	private List<FacilityCleaningProduct> facilityCleaningProducts;
 
@@ -154,9 +157,6 @@ public class CleaningProduct {
 		builder.append(volume);
 		builder.append(", UPC=");
 		builder.append(UPC);
-		builder.append(", facilityCleaningProducts=");
-		builder.append(facilityCleaningProducts);
-		builder.append("]");
 		return builder.toString();
 	}
 	
