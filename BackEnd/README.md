@@ -12,8 +12,11 @@
 ### API Routes
 
 #### Facilities
-`srsapi/facilities/{fid}` - Single `Facility` by id.
+GET `srsapi/facilities/{fid}` - Single `Facility` by id.
+GET `srsapi/facilities/{fid}/cleaningProducts/{cpid}` - `FacilityCleaningProduct` by facility id and cleaning product id.
+PATCH `srsapi/facilities/{fid}/cleaningProducts/{cpid}/{quantity}` - Update `Facility` inventory by facility id, cleaning product id, quantity. If no `FacilityCleaningProduct` exists, it will be created with this quantity.
 
 #### Cleaning Products
-`srsapi/cleaningProducts/{cpid}` - Single `CleaningProduct` by its id.  
-`srsapi/facilities/{fid}/cleaningProducts/{cpid}` - `FacilityCleaningProduct` by facility id and cleaning product id.
+GET `srsapi/cleaningProducts/{cpid}` - Single `CleaningProduct` by its id.
+POST `srsapi/cleaningProducts` - Create new `CleaningProduct`.
+PATCH `srsapi/cleaningProducts` - Update `CleaningProduct`.
