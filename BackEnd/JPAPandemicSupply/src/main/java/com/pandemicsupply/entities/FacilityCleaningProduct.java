@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class FacilityCleaningProduct {
 	
 	@EmbeddedId
-	private FacilityCleaningProductId id;
+	private FacilityCleaningProductId id = new FacilityCleaningProductId();
 	
 	private int quantity;
 
@@ -26,6 +26,32 @@ public class FacilityCleaningProduct {
 	@MapsId(value = "cleaningProductId")
 	private CleaningProduct cleaningProduct;
 	
+	public FacilityCleaningProduct() {}
+	
+	public FacilityCleaningProduct(FacilityCleaningProductId id) {
+		super();
+		this.id = id;
+	}
+
+	public FacilityCleaningProduct(FacilityCleaningProductId id, int quantity) {
+		super();
+		this.id = id;
+		this.quantity = quantity;
+	}
+	
+	public FacilityCleaningProduct(Facility facility, CleaningProduct cleaningProduct) {
+		super();
+		this.facility = facility;
+		this.cleaningProduct = cleaningProduct;
+	}
+	
+	public FacilityCleaningProduct(Facility facility, CleaningProduct cleaningProduct, int quantity) {
+		super();
+		this.facility = facility;
+		this.cleaningProduct = cleaningProduct;
+		setQuantity(quantity);
+	}
+
 	public FacilityCleaningProductId getId() {
 		return id;
 	}
@@ -39,7 +65,11 @@ public class FacilityCleaningProduct {
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		// quantity should only be greater than 0, pass in amount to change inventory (+ or -)
+		this.quantity += quantity;
+		if (this.quantity < 0) {
+			this.quantity = 0;
+		}
 	}
 
 	public CleaningProduct getCleaningProduct() {

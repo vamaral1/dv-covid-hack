@@ -34,7 +34,7 @@ class CleaningProductTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		cp = em.find(CleaningProduct.class, 1);
-		FacilityCleaningProductId fcpid = new FacilityCleaningProductId();
+		FacilityCleaningProductId fcpid = new FacilityCleaningProductId(1, 1);
 		fcpid.setFacilityId(1);
 		fcpid.setCleaningProductId(1);
 		fcp = em.find(FacilityCleaningProduct.class, fcpid);

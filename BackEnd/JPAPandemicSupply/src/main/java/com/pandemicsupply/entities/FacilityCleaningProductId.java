@@ -16,6 +16,14 @@ public class FacilityCleaningProductId implements Serializable{
 	@Column(name = "cleaning_product_id")
 	private int cleaningProductId;
 	
+	public FacilityCleaningProductId() {}
+	
+	public FacilityCleaningProductId(int facilityId, int cleaningProductId) {
+		super();
+		this.facilityId = facilityId;
+		this.cleaningProductId = cleaningProductId;
+	}
+
 	public int getFacilityId() {
 		return facilityId;
 	}
