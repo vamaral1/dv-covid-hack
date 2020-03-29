@@ -3,6 +3,8 @@ package com.pandemicsupply.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class PersonalProtectiveEquipment {
 	private boolean improvised;
 	private boolean powdered;
 	private boolean reusable;
+	@Enumerated(EnumType.STRING)
 	private Size size;
 	private String type;
 	private String UPC;
