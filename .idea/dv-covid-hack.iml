@@ -15,6 +15,11 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/BackEnd/BootPandemicSupply/src/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BackEnd/JPAPandemicSupply/src/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BackEnd/JPAPandemicSupply/src/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/BackEnd/BootPandemicSupply/src/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/PandemicSupplyAngular/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/PandemicSupplyAngular/dist" />
       <excludeFolder url="file://$MODULE_DIR$/PandemicSupplyAngular/tmp" />
     </content>

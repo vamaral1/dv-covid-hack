@@ -11,6 +11,8 @@ import { EnterUsersComponent } from './enter-users/enter-users.component';
 import { EnterFacilitiesComponent } from './enter-facilities/enter-facilities.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MapComponent } from './map/map.component';
+import { MapFilterComponent } from './map-filter/map-filter.component';
 
 const appRoutes: Routes = [
   {
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     SuplyListComponent,
     EnterSuppliesComponent,
     EnterUsersComponent,
-    EnterFacilitiesComponent
+    EnterFacilitiesComponent,
+    MapComponent,
+    MapFilterComponent
   ],
   imports: [
     BrowserModule,

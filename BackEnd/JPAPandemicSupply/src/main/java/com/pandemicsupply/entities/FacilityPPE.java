@@ -23,7 +23,7 @@ public class FacilityPPE {
 	@MapsId(value = "ppeId")
 	private PersonalProtectiveEquipment ppe;
 
-	@JsonIgnoreProperties({"facilityCleaningProducts", "masks", "ventilators", "ppes"})
+	@JsonIgnoreProperties({"facilityCleaningProducts", "masks", "ventilators", "ppes", "tests"})
 	@ManyToOne
 	@JoinColumn(name = "facility_id")
 	@MapsId(value = "facilityId")

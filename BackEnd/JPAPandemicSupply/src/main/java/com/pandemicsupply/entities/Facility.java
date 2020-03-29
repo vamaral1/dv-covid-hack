@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -35,6 +34,17 @@ public class Facility {
 	@OneToMany(mappedBy = "facility")
 	private List<FacilityPPE> ppes;
 	
+	@OneToMany(mappedBy = "facility")
+	private List<FacilityTestKit> testKits;
+	
+	
+	
+	public List<FacilityTestKit> getTestKits() {
+		return testKits;
+	}
+	public void setTestKits(List<FacilityTestKit> tests) {
+		this.testKits = tests;
+	}
 	public List<FacilityVentilator> getVentilators() {
 		return ventilators;
 	}
