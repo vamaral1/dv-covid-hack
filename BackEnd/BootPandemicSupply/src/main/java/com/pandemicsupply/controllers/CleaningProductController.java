@@ -1,5 +1,7 @@
 package com.pandemicsupply.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,23 +25,6 @@ public class CleaningProductController {
 	@Autowired
 	private CleaningProductDAO cpDAO;
 	
-	// facility cleaning product inventory mappings - find, update quantity
-	
-	@GetMapping(path = "facilities/{fid}/cleaningProducts/{cpid}")
-	public FacilityCleaningProduct findSingleFCRByFacilityAndCleaningProduct(@PathVariable int fid, @PathVariable int cpid) {
-		FacilityCleaningProduct fcp = cpDAO.findFCPByFacilityAndCleaningProduct(fid, cpid);
-		
-		if (fcp == null) {
-			return cpDAO.createFCPAssociation(fid, cpid);
-		}
-		
-		return fcp;
-	}
-	
-	@PatchMapping(path = "facilities/{fid}/cleaningProducts/{cpid}/{quantity}")
-	public FacilityCleaningProduct updateFacilityCleaningProductInventory(@PathVariable int fid, @PathVariable int cpid, @PathVariable int quantity) {
-		return cpDAO.updateFCP(fid, cpid, quantity);
-	}
 	
 	// cleaning product creation, updating
 	@GetMapping(path = "cleaningProducts/{cpid}")
@@ -65,7 +50,29 @@ public class CleaningProductController {
 		return cpDAO.modifyCleaningProduct(cp);
 	}
 	
+	// facility cleaning product inventory mappings - find, update quantity
 	
+		@GetMapping(path = "facilities/{fid}/cleaningProducts/{cpid}")
+		public FacilityCleaningProduct findSingleFCRByFacilityAndCleaningProduct(@PathVariable int fid, @PathVariable int cpid) {
+			FacilityCleaningProduct fcp = cpDAO.findFCPByFacilityAndCleaningProduct(fid, cpid);
+			
+			if (fcp == null) {
+				return cpDAO.createFCPAssociation(fid, cpid);
+			}
+			
+			return fcp;
+		}
+		
+		@GetMapping(path = "facilities/cleaningProducts/{cpid}")
+		public List<FacilityCleaningProduct> findFacilitiesByCleaningProduct(@PathVariable int cpid) {
+			return cpDAO.findFCPByCleaningProductId(cpid);
+		}
+		
+		@PatchMapping(path = "facilities/{fid}/cleaningProducts/{cpid}/{quantity}")
+		public FacilityCleaningProduct updateFacilityCleaningProductInventory(@PathVariable int fid, @PathVariable int cpid, @PathVariable int quantity) {
+			return cpDAO.updateFCP(fid, cpid, quantity);
+		}
+		
 	
 	
 	

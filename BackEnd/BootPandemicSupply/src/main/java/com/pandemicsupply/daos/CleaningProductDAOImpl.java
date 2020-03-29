@@ -1,5 +1,6 @@
 package com.pandemicsupply.daos;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,21 @@ public class CleaningProductDAOImpl implements CleaningProductDAO {
 		Optional<Facility> f = fRepo.findById(fid);
 		Optional<CleaningProduct> cp = cpRepo.findById(cpid);
 		if (f.isPresent() && cp.isPresent()) {
-			return fcpRepo.findByFacilityAndCleaningProduct(f.get(), cp.get());
+			FacilityCleaningProduct fcp = fcpRepo.findByFacilityAndCleaningProduct(f.get(), cp.get());
+			if (fcp == null) {
+				fcp = new FacilityCleaningProduct(f.get(), cp.get());
+				fcpRepo.saveAndFlush(fcp);
+			}
+			return fcp;
+		}
+		return null;
+	}
+	
+	@Override
+	public List<FacilityCleaningProduct> findFCPByCleaningProductId(int cpid) {
+		Optional<CleaningProduct> cp = cpRepo.findById(cpid);
+		if (cp.isPresent()) {
+			return fcpRepo.findByCleaningProduct(cp.get());
 		}
 		return null;
 	}
@@ -78,7 +93,6 @@ public class CleaningProductDAOImpl implements CleaningProductDAO {
 
 	@Override
 	public CleaningProduct modifyCleaningProduct(CleaningProduct cp) {
-		// TODO Auto-generated method stub
 		Optional<CleaningProduct> optionalCP = cpRepo.findById(cp.getId());
 		if (optionalCP.isPresent()) {
 			CleaningProduct managedCP = optionalCP.get();

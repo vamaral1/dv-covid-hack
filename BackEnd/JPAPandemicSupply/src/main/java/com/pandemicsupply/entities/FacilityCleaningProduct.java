@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "facility_cleaning_product")
 public class FacilityCleaningProduct {
@@ -16,11 +18,20 @@ public class FacilityCleaningProduct {
 	
 	private int quantity;
 
+	@JsonIgnoreProperties({"facilityCleaningProducts", "masks"})
 	@ManyToOne
 	@JoinColumn(name = "facility_id")
 	@MapsId(value = "facilityId")
 	private Facility facility;
 	
+	public Facility getFacility() {
+		return facility;
+	}
+
+	public void setFacility(Facility facility) {
+		this.facility = facility;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "cleaning_product_id")
 	@MapsId(value = "cleaningProductId")

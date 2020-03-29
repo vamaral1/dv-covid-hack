@@ -385,6 +385,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `personal_protective_equipment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `personal_protective_equipment` (`id`, `improvised`, `name`, `powdered`, `reusable`, `size`, `type`, `UPC`) VALUES (1, 0, 'ppeTest', 0, 0, 'M', 'gown', '12345-67-890');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility_ppe`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility_ppe` (`facility_id`, `ppe_id`, `quantity`) VALUES (1, 1, 5);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `cleaning_product`
 -- -----------------------------------------------------
 START TRANSACTION;
