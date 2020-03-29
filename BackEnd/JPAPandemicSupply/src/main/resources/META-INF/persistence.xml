@@ -13,10 +13,12 @@
 	<class>com.pandemicsupply.entities.FacilityCleaningProduct</class>
 	<class>com.pandemicsupply.entities.FacilityMask</class>
 	<class>com.pandemicsupply.entities.FacilityPPE</class>
+	<class>com.pandemicsupply.entities.FacilityTestKit</class>
 	<class>com.pandemicsupply.entities.FacilityVentilator</class>
 	<class>com.pandemicsupply.entities.FacilityVentilatorId</class>
 	<class>com.pandemicsupply.entities.Mask</class>
 	<class>com.pandemicsupply.entities.PersonalProtectiveEquipment</class>
+	<class>com.pandemicsupply.entities.TestKit</class>
 	<class>com.pandemicsupply.entities.Ventilator</class>
 
     <properties>
