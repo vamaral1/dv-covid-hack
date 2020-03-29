@@ -27,9 +27,9 @@ GET `srsapi/facilities/cleaningProducts/{cpid}` - Find all `FacilityCleaningProd
 PATCH `srsapi/facilities/{fid}/cleaningProducts/{cpid}/{quantity}` - Update `Facility` inventory by facility id, cleaning product id, quantity. If no `FacilityCleaningProduct` exists, it will be created with this quantity.
 
 #### Masks
-GET `srsapi/masks/{mid}` - Get `Mask` by id.
-POST `srsapi/masks` - Create new `Mask`.
-PATCH `srsapi/masks` - Update `Mask`.
+GET `srsapi/masks/{mid}` - Get `Mask` by id.  
+POST `srsapi/masks` - Create new `Mask`.  
+PATCH `srsapi/masks` - Update `Mask`.  
 
 #### Facility Mask Inventory  
 GET `srsapi/facilities/{fid}/masks/{mid}` - `FacilityCleaningProduct` by facility id and mask id.    
