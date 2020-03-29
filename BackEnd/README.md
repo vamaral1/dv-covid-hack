@@ -44,4 +44,14 @@ PATCH `srsapi/ppe` - Update `PersonalProtectiveEquipment`.
 #### Facility PPE Inventory  
 GET `srsapi/facilities/{fid}/ppe/{ppeId}` - `FacilityPPE` by facility id and ppe id.    
 GET `srsapi/facilities/ppe/{ppeId}` - Find all `FacilityPPE`s associated with a `PersonalProtectiveEquipment`.    
-PATCH `srsapi/facilities/{fid}/ppe/{ppeId}/{quantity}` - Update `Facility` inventory by facility id, ppe id, and quantity. If no `FacilityPPE` exists, it will be created with this quantity.
+PATCH `srsapi/facilities/{fid}/ppe/{ppeId}/{quantity}` - Update `Facility` inventory by facility id, ppe id, and quantity. If no `FacilityPPE` exists, it will be created with this quantity.  
+
+#### Room  
+GET `srsapi/rooms/{rid}` - Get `Room` by id.  
+POST `srsapi/rooms` - Create new `Room`.  
+PATCH `srsapi/rooms` - Update `Room`.   
+
+#### Facility Room Inventory  
+GET `srsapi/facilities/{fid}/rooms/{rid}` - `FacilityRoom` by facility id and room id.    
+GET `srsapi/facilities/rooms/{rid}` - Find all `FacilityRoom`s associated with a `Room`.    
+PATCH `srsapi/facilities/{fid}/rooms/{rid}/{quantity}` - Update `Facility` inventory by facility id, room id, and quantity. If no `FacilityRoom` exists, it will be created with this quantity.
