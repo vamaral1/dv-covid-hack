@@ -56,6 +56,15 @@ public class RoomDAOImpl implements RoomDAO{
 	}
 
 	@Override
+	public List<FacilityRoom> findFRByFacility(int fid) {
+		Optional<Facility> optFacility = fRepo.findById(fid);
+		if (optFacility.isPresent()) {
+			return frRepo.findByFacility(optFacility.get());
+		}
+		return null;
+	}
+	
+	@Override
 	public List<FacilityRoom> findFRByRoom(int rid) {
 		Optional<Room> room = rRepo.findById(rid);
 		if (room.isPresent()) {
@@ -90,6 +99,11 @@ public class RoomDAOImpl implements RoomDAO{
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public List<Room> findAllRooms() {
+		return rRepo.findAll();
 	}
 
 	@Override

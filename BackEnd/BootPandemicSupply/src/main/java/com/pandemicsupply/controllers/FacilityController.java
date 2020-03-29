@@ -1,6 +1,9 @@
 package com.pandemicsupply.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +26,14 @@ public class FacilityController {
 		return facilityDao.createFacility(facility);
 	}
 	
-	@RequestMapping(path = "facilities/{fid}" )
+	@GetMapping(path = "facilities/{fid}" )
 	public Facility findById(@PathVariable int fid) {
 		return facilityDao.findFacilityById(fid);
+	}
+	
+	@GetMapping(path = "facilities")
+	public List<Facility> findAllFacilities() {
+		return facilityDao.findAllFacilities();
 	}
 	
 	@PatchMapping(path = "facilities")

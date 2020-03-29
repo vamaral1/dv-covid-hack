@@ -1,5 +1,6 @@
 package com.pandemicsupply.daos;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -33,6 +34,11 @@ public class FacilityDAOIpml implements FacilityDAO {
 		} else {
 			return null;
 		}
+	}
+	
+	@Override
+	public List<Facility> findAllFacilities() {
+		return facilityRepo.findAll();
 	}
 	
 	@Override
