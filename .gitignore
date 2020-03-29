@@ -5,4 +5,5 @@ target
 *.war
 .gradle
 .classpath
+.idea
 /.metadata/

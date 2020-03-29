@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BootPandemicSupply.iml" filepath="$PROJECT_DIR$/.idea/modules/BootPandemicSupply.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.iml" filepath="$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-624248203/BootPandemicSupply.JPAPandemicSupply.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BootPandemicSupply.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BootPandemicSupply.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BootPandemicSupply.test.iml" filepath="$PROJECT_DIR$/.idea/modules/BootPandemicSupply.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dv-covid-hack.iml" filepath="$PROJECT_DIR$/.idea/dv-covid-hack.iml" />
     </modules>
   </component>
