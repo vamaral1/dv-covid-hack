@@ -10,6 +10,7 @@ import { EnterSuppliesComponent } from './enter-supplies/enter-supplies.componen
 import { EnterUsersComponent } from './enter-users/enter-users.component';
 import { EnterFacilitiesComponent } from './enter-facilities/enter-facilities.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {
@@ -47,6 +48,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
