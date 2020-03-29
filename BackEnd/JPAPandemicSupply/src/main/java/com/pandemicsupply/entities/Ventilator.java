@@ -30,7 +30,7 @@ public class Ventilator {
 		super();
 	}
 
-	//getters and setterss
+	//getters and setters
 	public int getId() {
 		return id;
 	}
