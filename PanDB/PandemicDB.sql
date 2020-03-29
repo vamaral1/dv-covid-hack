@@ -447,6 +447,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `test`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `test` (`id`, `type`, `UPC`) VALUES (1, 'influenza', '123-45678');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility_test_kit`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility_test_kit` (`facility_id`, `test_id`, `quantity`) VALUES (1, 1, 50);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `ventilator`
 -- -----------------------------------------------------
 START TRANSACTION;

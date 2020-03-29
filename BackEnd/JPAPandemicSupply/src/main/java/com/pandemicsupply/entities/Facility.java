@@ -34,6 +34,17 @@ public class Facility {
 	@OneToMany(mappedBy = "facility")
 	private List<FacilityPPE> ppes;
 	
+	@OneToMany(mappedBy = "facility")
+	private List<FacilityTestKit> testKits;
+	
+	
+	
+	public List<FacilityTestKit> getTestKits() {
+		return testKits;
+	}
+	public void setTestKits(List<FacilityTestKit> tests) {
+		this.testKits = tests;
+	}
 	public List<FacilityVentilator> getVentilators() {
 		return ventilators;
 	}

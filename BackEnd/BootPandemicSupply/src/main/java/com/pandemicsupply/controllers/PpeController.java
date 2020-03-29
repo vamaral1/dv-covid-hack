@@ -26,7 +26,7 @@ public class PpeController {
 	private PersonalProtectiveEquipmentDAO ppeDAO;
 	
 	//TEST PASSED
-	// FIND BY ID
+	// FIND FACILITY PPE BY FACILITY AND PPE
 	@GetMapping(path = "facilities/{fid}/ppe/{ppeId}")
 	public FacilityPPE findSingleFacPPEByFacilityAndPPE(@PathVariable int fid, @PathVariable int ppeId) {
 		FacilityPPE facPpe = ppeDAO.findFacilityPPEByFacilityAndPPE(fid, ppeId);
