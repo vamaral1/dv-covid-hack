@@ -13,8 +13,10 @@
 	<class>com.pandemicsupply.entities.FacilityCleaningProduct</class>
 	<class>com.pandemicsupply.entities.FacilityMask</class>
 	<class>com.pandemicsupply.entities.FacilityPPE</class>
+	<class>com.pandemicsupply.entities.FacilityRoom</class>
 	<class>com.pandemicsupply.entities.Mask</class>
 	<class>com.pandemicsupply.entities.PersonalProtectiveEquipment</class>
+	<class>com.pandemicsupply.entities.Room</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pandemicdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />

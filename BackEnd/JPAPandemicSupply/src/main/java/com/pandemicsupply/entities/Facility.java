@@ -21,6 +21,9 @@ public class Facility {
 	private String name;
 	
 	@OneToMany(mappedBy = "facility")
+	private List<FacilityRoom> facilityRoomsInventory;
+	
+	@OneToMany(mappedBy = "facility")
 	private List<FacilityCleaningProduct> facilityCleaningProducts;
 	
 	@OneToMany(mappedBy = "facility")
