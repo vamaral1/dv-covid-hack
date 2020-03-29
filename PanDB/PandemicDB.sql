@@ -445,3 +445,23 @@ INSERT INTO `facility_mask` (`facility_id`, `mask_id`, `quantity`) VALUES (1, 1,
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `ventilator`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `ventilator` (`id`, `make`, `model`, `invasive`, `UPC`) VALUES (1, 'Respironics', 'V200', true, '123456');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `facility_ventilator`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `PandemicDB`;
+INSERT INTO `facility_ventilator` (`facility_id`, `ventilator_id`, `quantity`) VALUES (1, 1, 20);
+
+COMMIT;
+

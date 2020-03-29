@@ -6,28 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class FacilityVentilatorId implements Serializable {
+public class FacilityRoomId implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-	//fields
 	@Column(name = "facility_id")
 	private int facilityId;
 
-	@Column(name = "ventilator_id")
-	private int ventilatorId;
+	@Column(name = "room_id")
+	private int roomId;
 
-	//ctors
-	public FacilityVentilatorId() {
-		super();
-	}
-
-	public FacilityVentilatorId(int facilityId, int ventilatorId) {
-		super();
-		this.facilityId = facilityId;
-		this.ventilatorId = ventilatorId;
-	}
-
-	//get n set
 	public int getFacilityId() {
 		return facilityId;
 	}
@@ -36,12 +24,12 @@ public class FacilityVentilatorId implements Serializable {
 		this.facilityId = facilityId;
 	}
 
-	public int getVentilatorId() {
-		return ventilatorId;
+	public int getRoomId() {
+		return roomId;
 	}
 
-	public void setVentilatorId(int ventilatorId) {
-		this.ventilatorId = ventilatorId;
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 
 	public static long getSerialversionuid() {
@@ -53,7 +41,7 @@ public class FacilityVentilatorId implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + facilityId;
-		result = prime * result + ventilatorId;
+		result = prime * result + roomId;
 		return result;
 	}
 
@@ -65,10 +53,10 @@ public class FacilityVentilatorId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FacilityVentilatorId other = (FacilityVentilatorId) obj;
+		FacilityRoomId other = (FacilityRoomId) obj;
 		if (facilityId != other.facilityId)
 			return false;
-		if (ventilatorId != other.ventilatorId)
+		if (roomId != other.roomId)
 			return false;
 		return true;
 	}
@@ -76,10 +64,10 @@ public class FacilityVentilatorId implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("FacilityVentilatorId [facilityId=");
+		builder.append("FacilityRoomId [facilityId=");
 		builder.append(facilityId);
-		builder.append(", ventilatorId=");
-		builder.append(ventilatorId);
+		builder.append(", roomId=");
+		builder.append(roomId);
 		builder.append("]");
 		return builder.toString();
 	}
