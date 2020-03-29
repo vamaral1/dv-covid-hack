@@ -50,7 +50,7 @@ public class RoomController {
 	}
 
 	// facility mask inventory
-	@GetMapping(path = "facilities/{fid}/masks/{mid}")
+	@GetMapping(path = "facilities/{fid}/rooms/{rid}")
 	public FacilityRoom facilitySingleMaskInventory(@PathVariable int fid, @PathVariable int rid) {
 		FacilityRoom fr = rDAO.findFRByFacilityAndRoom(fid, rid);
 
@@ -61,12 +61,12 @@ public class RoomController {
 		return fr;
 	}
 
-	@GetMapping(path = "facilities/masks/{mid}")
+	@GetMapping(path = "facilities/rooms/{rid}")
 	public List<FacilityRoom> findFacilitiesByRoom(@PathVariable int rid) {
 		return rDAO.findFRByRoom(rid);
 	}
 
-	@PatchMapping(path = "facilities/{fid}/masks/{mid}/{quantity}")
+	@PatchMapping(path = "facilities/{fid}/rooms/{rid}/{quantity}")
 	public FacilityRoom updateFacilityRoomInventory(@PathVariable int fid, @PathVariable int rid,
 			@PathVariable int quantity) {
 		return rDAO.updateFR(fid, rid, quantity);
