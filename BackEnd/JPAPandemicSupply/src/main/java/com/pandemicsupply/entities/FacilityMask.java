@@ -8,16 +8,18 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "facility_mask")
 public class FacilityMask {
 	
 	@EmbeddedId
-	private FacilityMaskId id;
+	private FacilityMaskId id = new FacilityMaskId();
 	
 	private int quantity;
 	
+	@JsonIgnoreProperties({"facilityCleaningProducts", "masks"})
 	@ManyToOne
 	@JoinColumn(name = "facility_id")
 	@MapsId(value = "facilityId")
@@ -27,6 +29,21 @@ public class FacilityMask {
 	@JoinColumn(name = "mask_id")
 	@MapsId(value = "maskId")
 	private Mask mask;
+	
+	public FacilityMask() {}
+	
+	public FacilityMask(int quantity, Facility facility, Mask mask) {
+		super();
+		this.quantity = quantity;
+		this.facility = facility;
+		this.mask = mask;
+	}
+
+	public FacilityMask(Facility facility, Mask mask) {
+		super();
+		this.facility = facility;
+		this.mask = mask;
+	}
 
 	public FacilityMaskId getId() {
 		return id;
@@ -41,7 +58,18 @@ public class FacilityMask {
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		this.quantity += quantity;
+		if (this.quantity < 0) {
+			this.quantity = 0;
+		}
+	}
+
+	public Facility getFacility() {
+		return facility;
+	}
+
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 
 	public Mask getMask() {
