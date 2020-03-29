@@ -9,27 +9,28 @@ import { SuplyListComponent } from './suply-list/suply-list.component';
 import { EnterSuppliesComponent } from './enter-supplies/enter-supplies.component';
 import { EnterUsersComponent } from './enter-users/enter-users.component';
 import { EnterFacilitiesComponent } from './enter-facilities/enter-facilities.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
-  { 
-    path: '', 
-    component:  MainbodyComponent
+  {
+    path: '',
+    component: MainbodyComponent
   },
-  { 
-    path: 'supply-list', 
-    component:  SuplyListComponent
+  {
+    path: 'supply-list',
+    component: SuplyListComponent
   },
-  { 
-    path: 'enter-supplies', 
-    component:  EnterSuppliesComponent
+  {
+    path: 'enter-supplies',
+    component: EnterSuppliesComponent
   },
-  { 
-    path: 'enter-users', 
-    component:  EnterUsersComponent
+  {
+    path: 'enter-users',
+    component: EnterUsersComponent
   },
-  { 
-    path: 'enter-facilities', 
-    component:  EnterFacilitiesComponent
+  {
+    path: 'enter-facilities',
+    component: EnterFacilitiesComponent
   }
 ];
 
@@ -45,9 +46,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } 
+      { enableTracing: true }
     )
   ],
   providers: [],
