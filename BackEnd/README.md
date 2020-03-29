@@ -32,6 +32,16 @@ POST `srsapi/masks` - Create new `Mask`.
 PATCH `srsapi/masks` - Update `Mask`.  
 
 #### Facility Mask Inventory  
-GET `srsapi/facilities/{fid}/masks/{mid}` - `FacilityCleaningProduct` by facility id and mask id.    
+GET `srsapi/facilities/{fid}/masks/{mid}` - `FacilityMask` by facility id and mask id.    
 GET `srsapi/facilities/masks/{mid}` - Find all `FacilityMask`s associated with a `Mask`.    
 PATCH `srsapi/facilities/{fid}/masks/{mid}/{quantity}` - Update `Facility` inventory by facility id, mask id, and quantity. If no `FacilityMask` exists, it will be created with this quantity.
+
+#### PPE  
+GET `srsapi/ppe/{ppeId}` - Get `PersonalProtectiveEquipment` by id.  
+POST `srsapi/ppe` - Create new `PersonalProtectiveEquipment`.  
+PATCH `srsapi/ppe` - Update `PersonalProtectiveEquipment`.   
+
+#### Facility PPE Inventory  
+GET `srsapi/facilities/{fid}/ppe/{ppeId}` - `FacilityPPE` by facility id and ppe id.    
+GET `srsapi/facilities/ppe/{ppeId}` - Find all `FacilityPPE`s associated with a `PersonalProtectiveEquipment`.    
+PATCH `srsapi/facilities/{fid}/ppe/{ppeId}/{quantity}` - Update `Facility` inventory by facility id, ppe id, and quantity. If no `FacilityPPE` exists, it will be created with this quantity.
