@@ -26,6 +26,24 @@ public class Facility {
 	@OneToMany(mappedBy = "facility")
 	private List<FacilityMask> masks;
 	
+	@OneToMany(mappedBy = "facility")
+	private List<FacilityVentilator> ventilators;
+	
+	@OneToMany(mappedBy = "facility")
+	private List<FacilityPPE> ppes;
+	
+	public List<FacilityVentilator> getVentilators() {
+		return ventilators;
+	}
+	public void setVentilators(List<FacilityVentilator> ventilators) {
+		this.ventilators = ventilators;
+	}
+	public List<FacilityPPE> getPpes() {
+		return ppes;
+	}
+	public void setPpes(List<FacilityPPE> ppes) {
+		this.ppes = ppes;
+	}
 	public List<FacilityMask> getMasks() {
 		return masks;
 	}
