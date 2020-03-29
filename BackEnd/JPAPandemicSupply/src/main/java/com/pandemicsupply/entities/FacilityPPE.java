@@ -26,6 +26,7 @@ public class FacilityPPE {
 	@MapsId(value = "facilityId")
 	private Facility facility;
 
+	//ctors
 	public FacilityPPE() {
 		super();
 	}
@@ -58,6 +59,7 @@ public class FacilityPPE {
 		return id;
 	}
 
+	//getters and setters
 	public void setId(FacilityPPEId id) {
 		this.id = id;
 	}
