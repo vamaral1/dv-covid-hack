@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapComponent } from './map/map.component';
 import { MapFilterComponent } from './map-filter/map-filter.component';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   {
@@ -47,19 +48,22 @@ const appRoutes: Routes = [
     EnterUsersComponent,
     EnterFacilitiesComponent,
     MapComponent,
-    MapFilterComponent
+    MapFilterComponent,
+    SuplyListComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
     )
   ],
+  exports: [SuplyListComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, SuplyListComponent]
 })
 export class AppModule { }

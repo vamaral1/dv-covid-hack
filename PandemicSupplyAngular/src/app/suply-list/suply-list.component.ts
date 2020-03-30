@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 interface Item {
   facilityName: string;
@@ -34,14 +39,33 @@ const ITEMS: Item[] = [
   }
 ];
 
+function search(text: string, pipe: PipeTransform): Item[] {
+  return ITEMS.filter(item => {
+    const term = text.toLowerCase();
+    return item.facilityName.toLowerCase().includes(term)
+        || pipe.transform(item.name).includes(term)
+        || pipe.transform(item.type).includes(term)
+        || pipe.transform(item.size).includes(term);
+  });
+}
+
 @Component({
   selector: 'app-suply-list',
   templateUrl: './suply-list.component.html',
-  styleUrls: ['./suply-list.component.css']
+  styleUrls: ['./suply-list.component.css'],
+  providers: [DecimalPipe]
 })
 export class SuplyListComponent implements OnInit {
 
-  constructor() { }
+  items$: Observable<Item[]>;
+  filter = new FormControl('');
+
+  constructor(pipe: DecimalPipe) {
+    this.items$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => search(text, pipe))
+    );
+   }
 
   items = ITEMS;
 

@@ -21,6 +21,11 @@
     </div> -->
     <div class="card">
         <div class="card card-body">
+            <form>
+                <div class="form-group form-inline">
+                    Full text search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+                </div>
+            </form>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -32,12 +37,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of items; index as i">
+                    <tr *ngFor="let item of items$ | async; index as i">
                         <th scope="row">{{ i + 1 }}</th>
-                        <td>{{ item.facilityName }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.type }}</td>
-                        <td>{{ item.size }}</td>
+                        <td>
+                            <ngb-highlight [result]="item.facilityName" [term]="filter.value"></ngb-highlight>
+                        </td>
+                        <td><ngb-highlight [result]="item.name" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.type" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.size" [term]="filter.value"></ngb-highlight></td>
                     </tr>
                 </tbody>
             </table>
