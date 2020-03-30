@@ -370,6 +370,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `PandemicDB`;
 INSERT INTO `address` (`id`, `city`, `latitude`, `longitude`, `phone`, `postal_code`, `state_province`, `street`) VALUES (1, 'Englewood', NULL, NULL, NULL, '80113', 'Colorado', '501 E Hampden Avenue');
+INSERT INTO `address` (`id`, `city`, `latitude`, `longitude`, `phone`, `postal_code`, `state_province`, `street`) VALUES (2, 'Denver', NULL, NULL, NULL, '80113', 'Colorado', '123 HackThis St');
 
 COMMIT;
 
@@ -380,6 +381,7 @@ COMMIT;
 START TRANSACTION;
 USE `PandemicDB`;
 INSERT INTO `facility` (`id`, `name`, `address_id`) VALUES (1, 'Swedish Hospital', 1);
+INSERT INTO `facility` (`id`, `name`, `address_id`) VALUES (2, 'HackyHospital', 2);
 
 COMMIT;
 
