@@ -75,7 +75,6 @@ public class CleaningProductController {
 		return fcp;
 	}
 	
-	// untested
 	// list of inventories of all CP types at a facility
 	@GetMapping(path = "facilities/{fid}/cleaningProducts")
 	public List<FacilityCleaningProduct> findAllAvailableCPsByFacility(@PathVariable int fid){
