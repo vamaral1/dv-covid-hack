@@ -45,7 +45,7 @@ public class FacilityController {
 		return facilityDao.updateFacility(facility);
 	}
 
-	// TEST FAIL
+	// TEST passed
 	// find list of Facilities by name
 	@GetMapping(path = "facilities/{name}")
 	public List<Facility> getFacilityListByName(@PathVariable String name, HttpServletRequest req,

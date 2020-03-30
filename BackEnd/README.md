@@ -13,8 +13,10 @@
 
 #### Facilities
 GET `srsapi/facilities` - Find all `Facility`s.
-GET `srsapi/facilities/{fid}` - Single `Facility` by id.      
-PATCH `srsapi/facilities` - Update existing facility.  
+GET `srsapi/facilities/{fid}` - Single `Facility` by id.
+GET `srsapi/facilities/{name}` - Find all `Facility`s by name.
+GET `srsapi/facilities/{fid}/address` - Find single `Facility`'s Address.
+PATCH `srsapi/facilities` - Update existing `Facility`.  
 POST `srsapi/facilities` - Create new `Facility`.  
 
 #### Cleaning Products
@@ -26,6 +28,7 @@ PATCH `srsapi/cleaningProducts` - Update `CleaningProduct`.
 GET `srsapi/facilities/{fid}/cleaningProducts/{cpid}` - `FacilityCleaningProduct` inventory by facility id and cleaning product id.    
 GET `srsapi/facilities/cleaningProducts/{cpid}` - Find all `FacilityCleaningProduct`s inventories associated with a `CleaningProduct`.    
 PATCH `srsapi/facilities/{fid}/cleaningProducts/{cpid}/{quantity}` - Update `Facility` inventory by facility id, cleaning product id, quantity. If no `FacilityCleaningProduct` exists, it will be created with this quantity.
+
 
 #### Masks
 GET `srsapi/masks/{mid}` - Get `Mask` by id.  
@@ -40,7 +43,7 @@ GET `srsapi/facilities/masks/{mid}` - Find all `FacilityMask`s inventories assoc
 PATCH `srsapi/facilities/{fid}/masks/{mid}/{quantity}` - Update `Facility` inventory by facility id, mask id, and quantity. If no `FacilityMask` exists, it will be created with this quantity.
 
 #### PPE  
-GET `srsapi/ppe/{ppeId}` - Get `PersonalProtectiveEquipment` by id.  
+GET `srsapi/ppe/{pid}` - Get `PersonalProtectiveEquipment` by id.  
 POST `srsapi/ppe` - Create new `PersonalProtectiveEquipment`.  
 PATCH `srsapi/ppe` - Update `PersonalProtectiveEquipment`.   
 
@@ -53,10 +56,12 @@ PATCH `srsapi/facilities/{fid}/ppe/{ppeId}/{quantity}` - Update `Facility` inven
 GET `srsapi/rooms/{rid}` - Get `Room` by id.  
 GET `srsapi/rooms` - Get all `Room`s.  
 POST `srsapi/rooms` - Create new `Room`.  
-PATCH `srsapi/rooms` - Update `Room`.   
+PATCH `srsapi/rooms` - Update existing `Room`.   
 
 #### Facility Room Inventory  
-GET `srsapi/facilities/{fid}/rooms/{rid}` - `FacilityRoom` by facility id and room id.    
+GET `srsapi/facilities/{fid}/rooms/{rid}` - Find `FacilityRoom` by facility id and room id.    
 GET `srsapi/facilities/{fid}/rooms` - Find all `FacilityRoom`s inventories associated with a `Facility`.    
 GET `srsapi/facilities/rooms/{rid}` - Find all `FacilityRoom`s inventories associated with a `Room`.    
 PATCH `srsapi/facilities/{fid}/rooms/{rid}/{quantity}` - Update `Facility` inventory by facility id, room id, and quantity. If no `FacilityRoom` exists, it will be created with this quantity.
+
+#### 
