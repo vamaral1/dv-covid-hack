@@ -50,7 +50,7 @@ public class PpeController {
 	// find List<FacilityPPE> by PPE
 	// from this List<FacilityPPE>, we can determine the List<Facility> and the List<Integer>, which represents the quantity
 	// Note:  for front end, maybe make a Map<Facility, Integer> where Key = Facility and Integer = quantity
-	@GetMapping(path = "ppe/{ppeId}/facilities")
+	@GetMapping(path = "facilities/ppe/{ppeId}")
 	public List<FacilityPPE> findListOfFacilityPPEsByPPE(@PathVariable int ppeId){
 		return ppeDAO.findFacPPEByPPE(ppeDAO.findPPEById(ppeId));
 	}
