@@ -26,11 +26,20 @@ public class CleaningProductController {
 	private CleaningProductDAO cpDAO;
 
 	// cleaning product creation, updating
+	
+	// single cp by id
 	@GetMapping(path = "cleaningProducts/{cpid}")
 	public CleaningProduct findSingleCleaningProductById(@PathVariable int cpid) {
 		return cpDAO.findCleaningProductById(cpid);
 	}
+	
+	// all available cleaning products database-wide
+	@GetMapping(path = "cleaningProducts")
+	public List<CleaningProduct> findAllCleaningProducts() {
+		return cpDAO.findAllCleaningProducts();
+	}
 
+	// create new cp
 	@PostMapping(path = "cleaningProducts")
 	public CleaningProduct createCleaningProduct(@RequestBody CleaningProduct cp, HttpServletRequest req,
 			HttpServletResponse resp) {
@@ -45,6 +54,7 @@ public class CleaningProductController {
 		return cp;
 	}
 
+	// update cp
 	@PatchMapping(path = "cleaningProducts")
 	public CleaningProduct updateCleaningProduct(@RequestBody CleaningProduct cp) {
 		return cpDAO.modifyCleaningProduct(cp);
@@ -52,6 +62,7 @@ public class CleaningProductController {
 
 	// facility cleaning product inventory mappings - find, update quantity
 
+	// inventory for single CP at a facility
 	@GetMapping(path = "facilities/{fid}/cleaningProducts/{cpid}")
 	public FacilityCleaningProduct findSingleFCRByFacilityAndCleaningProduct(@PathVariable int fid,
 			@PathVariable int cpid) {
@@ -63,12 +74,20 @@ public class CleaningProductController {
 
 		return fcp;
 	}
+	
+	// list of inventories of all CP types at a facility
+	@GetMapping(path = "facilities/{fid}/cleaningProducts")
+	public List<FacilityCleaningProduct> findAllAvailableCPsByFacility(@PathVariable int fid){
+		return cpDAO.findFCPByFacilityId(fid);
+	}
 
+	// list of facility inventories of a given CP type
 	@GetMapping(path = "facilities/cleaningProducts/{cpid}")
 	public List<FacilityCleaningProduct> findFacilitiesByCleaningProduct(@PathVariable int cpid) {
 		return cpDAO.findFCPByCleaningProductId(cpid);
 	}
 
+	// update the CP inventory for a specific facility, with a quantity
 	@PatchMapping(path = "facilities/{fid}/cleaningProducts/{cpid}/{quantity}")
 	public FacilityCleaningProduct updateFacilityCleaningProductInventory(@PathVariable int fid, @PathVariable int cpid,
 			@PathVariable int quantity) {

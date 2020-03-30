@@ -53,6 +53,15 @@ public class CleaningProductDAOImpl implements CleaningProductDAO {
 	}
 	
 	@Override
+	public List<FacilityCleaningProduct> findFCPByFacilityId(int fid) {
+		Optional<Facility> optFacility = fRepo.findById(fid);
+		if (optFacility.isPresent()) {
+			return fcpRepo.findByFacility(optFacility.get());
+		}
+		return null;
+	}
+	
+	@Override
 	public List<FacilityCleaningProduct> findFCPByCleaningProductId(int cpid) {
 		Optional<CleaningProduct> cp = cpRepo.findById(cpid);
 		if (cp.isPresent()) {
@@ -74,6 +83,11 @@ public class CleaningProductDAOImpl implements CleaningProductDAO {
 			return fcpRepo.saveAndFlush(fcp);
 		}
 		return null;
+	}
+	
+	@Override
+	public List<CleaningProduct> findAllCleaningProducts() {
+		return cpRepo.findAll();
 	}
 	
 	@Override

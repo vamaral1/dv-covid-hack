@@ -55,6 +55,16 @@ public class MaskDAOImpl implements MaskDAO {
 		return null;
 	}
 	
+	@Override
+	public List<FacilityMask> findFMByFacility(int fid) {
+		Optional<Facility> optFacility = fRepo.findById(fid);
+		if (optFacility.isPresent()) {
+			return fmRepo.findByFacility(optFacility.get());
+		}
+		return null;
+	}
+	
+	@Override
 	public List<FacilityMask> findFMByMask(int mid) {
 		Optional<Mask> mask = mRepo.findById(mid);
 		if (mask.isPresent()) {
@@ -78,6 +88,11 @@ public class MaskDAOImpl implements MaskDAO {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public List<Mask> findAllMasks() {
+		return mRepo.findAll();
 	}
 
 	@Override

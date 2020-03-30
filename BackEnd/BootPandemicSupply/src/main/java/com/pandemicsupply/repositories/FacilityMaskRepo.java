@@ -10,5 +10,6 @@ import com.pandemicsupply.entities.Mask;
 
 public interface FacilityMaskRepo extends JpaRepository<FacilityMask, Integer> {
 	FacilityMask findByFacilityAndMask(Facility facility, Mask mask);
+	List<FacilityMask> findByFacility(Facility facility);
 	List<FacilityMask> findByMask(Mask mask);
 }
