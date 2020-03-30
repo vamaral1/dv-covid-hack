@@ -42,6 +42,15 @@ public class PersonalProtectiveEquipmentDAOImpl implements PersonalProtectiveEqu
 	public List<FacilityPPE> findFacPPEByPPE(PersonalProtectiveEquipment ppe) {
 		return fppeRepo.findFacilityPPEByPpe(ppe);
 	}
+	
+	@Override
+	public List<FacilityPPE> findFacPPEByFacilityId(int fid) {
+		Optional<Facility> optFacility = fRepo.findById(fid);
+		if (optFacility.isPresent()) {
+			return fppeRepo.findFacilityPPEByFacility(optFacility.get());
+		}
+		return null;
+	}
 
 	@Override
 	public FacilityPPE findFacilityPPEByFacilityAndPPE(int fid, int ppeId) {
@@ -69,6 +78,13 @@ public class PersonalProtectiveEquipmentDAOImpl implements PersonalProtectiveEqu
 			return fppeRepo.saveAndFlush(facPpe);
 		}
 		return null;
+	}
+	
+	// PPE Methods
+	
+	@Override
+	public List<PersonalProtectiveEquipment> findAllPPE() {
+		return ppeRepo.findAll();
 	}
 
 	@Override

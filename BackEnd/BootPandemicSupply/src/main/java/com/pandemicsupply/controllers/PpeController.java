@@ -37,6 +37,15 @@ public class PpeController {
 		return facPpe;
 	}
 	
+	// Facility PPE inventory methods
+	
+	// NOT TESTED
+	// list of inventories of PPE types at a facility
+	@GetMapping(path = "facilities/{fid}/ppe")
+	public List<FacilityPPE> findAllPPEInventoryByFacility(@PathVariable int fid) {
+		return ppeDAO.findFacPPEByFacilityId(fid);
+	}
+	
 	//TEST PASS
 	// find List<FacilityPPE> by PPE
 	// from this List<FacilityPPE>, we can determine the List<Facility> and the List<Integer>, which represents the quantity
@@ -57,6 +66,12 @@ public class PpeController {
 	@GetMapping(path = "ppe/{pid}")
 	public PersonalProtectiveEquipment getPPEById(@PathVariable int pid) {
 		return ppeDAO.findPPEById(pid);
+	}
+	
+	// find all ppes
+	@GetMapping(path = "ppe")
+	public List<PersonalProtectiveEquipment> findAllPPE() {
+		return ppeDAO.findAllPPE();
 	}
 	
 	//TEST PASSED
