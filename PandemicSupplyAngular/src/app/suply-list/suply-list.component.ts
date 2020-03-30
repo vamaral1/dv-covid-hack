@@ -7,35 +7,47 @@ import { map, startWith } from 'rxjs/operators';
 
 interface Item {
   facilityName: string;
-  name: string;
-  type: string;
-  size: string;
+  ventilators: number;
+  gloves: number;
+  masks: number;
+  beds: number;
 }
 
 const ITEMS: Item[] = [
   {
     facilityName: 'University of Colorado Anschutz Medical Campus',
-    name: 'Ventilator',
-    type: 'Non-invasive',
-    size: 'Pediatric'
+    ventilators: 7,
+    gloves: 600,
+    masks: 800,
+    beds: 12
   },
   {
     facilityName: 'National Jewish',
-    name: 'Mask',
-    type: 'Respirator',
-    size: 'Large'
+    ventilators: 0,
+    gloves: 200,
+    masks: 1100,
+    beds: 3
   },
   {
     facilityName: 'Denver Health',
-    name: 'Mask',
-    type: 'Surgical',
-    size: 'Small'
+    ventilators: 14,
+    gloves: 2000,
+    masks: 2400,
+    beds: 0
   },
   {
     facilityName: 'Parker Adventist',
-    name: 'Gloves',
-    type: 'Nitrile',
-    size: 'Medium'
+    ventilators: 4,
+    gloves: 3300,
+    masks: 100,
+    beds: 9
+  },
+  {
+    facilityName: 'Swedish Medical Center',
+    ventilators: 18,
+    gloves: 700,
+    masks: 1500,
+    beds: 10
   }
 ];
 
@@ -43,9 +55,10 @@ function search(text: string, pipe: PipeTransform): Item[] {
   return ITEMS.filter(item => {
     const term = text.toLowerCase();
     return item.facilityName.toLowerCase().includes(term)
-        || pipe.transform(item.name).includes(term)
-        || pipe.transform(item.type).includes(term)
-        || pipe.transform(item.size).includes(term);
+        || pipe.transform(item.ventilators).includes(term)
+        || pipe.transform(item.gloves).includes(term)
+        || pipe.transform(item.masks).includes(term)
+        || pipe.transform(item.beds).includes(term);
   });
 }
 

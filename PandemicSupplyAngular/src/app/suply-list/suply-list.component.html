@@ -31,9 +31,10 @@
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Hospital Name</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Size</th>
+                        <th scope="col">Ventilators</th>
+                        <th scope="col">Gloves</th>
+                        <th scope="col">Masks</th>
+                        <th scope="col">Beds</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +43,10 @@
                         <td>
                             <ngb-highlight [result]="item.facilityName" [term]="filter.value"></ngb-highlight>
                         </td>
-                        <td><ngb-highlight [result]="item.name" [term]="filter.value"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="item.type" [term]="filter.value"></ngb-highlight></td>
-                        <td><ngb-highlight [result]="item.size" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.ventilators" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.gloves" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.masks" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.beds" [term]="filter.value"></ngb-highlight></td>
                     </tr>
                 </tbody>
             </table>
