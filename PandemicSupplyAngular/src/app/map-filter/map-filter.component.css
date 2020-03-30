@@ -1,0 +1,32 @@
+.key-container {
+    border: 2px solid black;
+    margin-bottom: 5px;
+}
+
+.filter-container {
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.circle {
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green {
+    background-color: #86bd95;
+    border: 2px solid #13b03d;
+}
+
+.yellow {
+    background-color: #f7f7a8;
+    border: 2px solid #f2f20f;
+}
+
+.red {
+    background-color: #e86b79;
+    border: 2px solid #e80c25;
+}

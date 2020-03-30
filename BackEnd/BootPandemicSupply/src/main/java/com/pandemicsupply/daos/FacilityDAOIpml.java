@@ -42,6 +42,11 @@ public class FacilityDAOIpml implements FacilityDAO {
 	}
 
 	@Override
+	public List<Facility> findAllFacilities() {
+		return facilityRepo.findAll();
+	}
+	
+	@Override
 	public Facility updateFacility(Facility facility) {
 		Optional<Facility> optionalFacility = facilityRepo.findById(facility.getId());
 

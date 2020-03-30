@@ -29,12 +29,17 @@ public class FacilityController {
 	public Facility createFacility(@RequestBody Facility facility) {
 		return facilityDao.createFacility(facility);
 	}
-
-	@RequestMapping(path = "facilities/{fid}")
+	
+	@GetMapping(path = "facilities/{fid}" )
 	public Facility findById(@PathVariable int fid) {
 		return facilityDao.findFacilityById(fid);
 	}
-
+	
+	@GetMapping(path = "facilities")
+	public List<Facility> findAllFacilities() {
+		return facilityDao.findAllFacilities();
+	}
+	
 	@PatchMapping(path = "facilities")
 	public Facility updateFacility(@RequestBody Facility facility) {
 		return facilityDao.updateFacility(facility);

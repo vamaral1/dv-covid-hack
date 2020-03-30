@@ -10,6 +10,10 @@ import { EnterSuppliesComponent } from './enter-supplies/enter-supplies.componen
 import { EnterUsersComponent } from './enter-users/enter-users.component';
 import { EnterFacilitiesComponent } from './enter-facilities/enter-facilities.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MapComponent } from './map/map.component';
+import { MapFilterComponent } from './map-filter/map-filter.component';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   {
@@ -42,17 +46,24 @@ const appRoutes: Routes = [
     SuplyListComponent,
     EnterSuppliesComponent,
     EnterUsersComponent,
-    EnterFacilitiesComponent
+    EnterFacilitiesComponent,
+    MapComponent,
+    MapFilterComponent,
+    SuplyListComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
     )
   ],
+  exports: [SuplyListComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, SuplyListComponent]
 })
 export class AppModule { }

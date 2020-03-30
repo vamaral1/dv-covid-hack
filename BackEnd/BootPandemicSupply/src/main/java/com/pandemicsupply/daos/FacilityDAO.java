@@ -9,6 +9,7 @@ public interface FacilityDAO {
 	
 	Facility createFacility(Facility facility);
 	Facility findFacilityById(int id);
+	List<Facility> findAllFacilities();
 	Facility updateFacility(Facility facility);
 	
 	Address findAddressByFacility(Facility facility);

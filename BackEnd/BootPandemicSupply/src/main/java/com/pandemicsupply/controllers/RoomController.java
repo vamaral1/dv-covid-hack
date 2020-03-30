@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pandemicsupply.daos.RoomDAO;
-import com.pandemicsupply.entities.FacilityMask;
 import com.pandemicsupply.entities.FacilityRoom;
 import com.pandemicsupply.entities.Room;
 
@@ -27,11 +26,19 @@ public class RoomController {
 	private RoomDAO rDAO;
 
 	// rooms
+	// single room 
 	@GetMapping(path = "rooms/{rid}")
 	public Room roomById(@PathVariable int rid) {
 		return rDAO.findRoomById(rid);
 	}
-
+	
+	// all possible room options
+	@GetMapping(path = "rooms")
+	public List<Room> getAllRooms() {
+		return rDAO.findAllRooms();
+	}
+	
+	// create new room
 	@PostMapping(path = "rooms")
 	public Room newRoom(@RequestBody Room room, HttpServletRequest req, HttpServletResponse resp) {
 		room = rDAO.createRoom(room);
@@ -44,12 +51,15 @@ public class RoomController {
 		return room;
 	}
 
+	// update room
 	@PatchMapping(path = "rooms")
 	public Room updateRoom(@RequestBody Room room) {
 		return rDAO.modifyRoom(room);
 	}
 
 	// facility mask inventory
+	
+	// inventory for single room type at facility
 	@GetMapping(path = "facilities/{fid}/rooms/{rid}")
 	public FacilityRoom facilitySingleMaskInventory(@PathVariable int fid, @PathVariable int rid) {
 		FacilityRoom fr = rDAO.findFRByFacilityAndRoom(fid, rid);
@@ -60,12 +70,20 @@ public class RoomController {
 
 		return fr;
 	}
+	
+	// list of inventories of all room types at a facility
+	@GetMapping(path = "facilities/{fid}/rooms")
+	public List<FacilityRoom> findAllAvailableRoomInventoriesAtFacility(@PathVariable int fid){
+		return rDAO.findFRByFacility(fid);
+	}
 
+	// show all facility inventories of a given type of room
 	@GetMapping(path = "facilities/rooms/{rid}")
 	public List<FacilityRoom> findFacilitiesByRoom(@PathVariable int rid) {
 		return rDAO.findFRByRoom(rid);
 	}
 
+	// update the room inventory for a specific hospital, with an amount
 	@PatchMapping(path = "facilities/{fid}/rooms/{rid}/{quantity}")
 	public FacilityRoom updateFacilityRoomInventory(@PathVariable int fid, @PathVariable int rid,
 			@PathVariable int quantity) {

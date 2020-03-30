@@ -1,21 +1,53 @@
 <div class="container">
     <br>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Size</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of items; index as i">
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.type }}</td>
-                    <td>{{ item.size }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Select Items to Search</h5>
+            <div class="btn-group btn-group-toggle">
+                <label class="btn-primary" ngbButtonLabel>
+                    <input type="checkbox" ngbButton [(ngModel)]="buttonModel.ventilators"> Ventilators
+                </label>
+                <label class="btn-primary" ngbButtonLabel>
+                    <input type="checkbox" ngbButton [(ngModel)]="buttonModel.masks"> Masks
+                </label>
+                <label class="btn-primary" ngbButtonLabel>
+                    <input type="checkbox" ngbButton [(ngModel)]="buttonModel.gloves"> Gloves
+                </label>
+                <label class="btn-primary" ngbButtonLabel>
+                        <input type="checkbox" ngbButton [(ngModel)]="buttonModel.beds"> Beds
+                    </label>
+            </div>
+        </div>
+    </div> -->
+    <div class="card">
+        <div class="card card-body">
+            <form>
+                <div class="form-group form-inline">
+                    Full text search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+                </div>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Hospital Name</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items$ | async; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>
+                            <ngb-highlight [result]="item.facilityName" [term]="filter.value"></ngb-highlight>
+                        </td>
+                        <td><ngb-highlight [result]="item.name" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.type" [term]="filter.value"></ngb-highlight></td>
+                        <td><ngb-highlight [result]="item.size" [term]="filter.value"></ngb-highlight></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
