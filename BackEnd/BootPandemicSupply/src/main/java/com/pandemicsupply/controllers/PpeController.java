@@ -24,8 +24,8 @@ public class PpeController {
 
 	@Autowired
 	private PersonalProtectiveEquipmentDAO ppeDAO;
-	
-	//TEST PASSED
+
+	// TEST PASSED
 	// FIND FACILITY PPE BY FACILITY AND PPE
 	@GetMapping(path = "facilities/{fid}/ppe/{ppeId}")
 	public FacilityPPE findSingleFacPPEByFacilityAndPPE(@PathVariable int fid, @PathVariable int ppeId) {
@@ -46,14 +46,18 @@ public class PpeController {
 		return ppeDAO.findFacPPEByFacilityId(fid);
 	}
 	
-	//TEST PASS
+
+	// TEST PASS
 	// find List<FacilityPPE> by PPE
-	// from this List<FacilityPPE>, we can determine the List<Facility> and the List<Integer>, which represents the quantity
-	// Note:  for front end, maybe make a Map<Facility, Integer> where Key = Facility and Integer = quantity
-	@GetMapping(path = "facilities/ppe/{ppeId}")
-	public List<FacilityPPE> findListOfFacilityPPEsByPPE(@PathVariable int ppeId){
+	// from this List<FacilityPPE>, we can determine the List<Facility> and the
+	// List<Integer>, which represents the quantity
+	// Note: for front end, maybe make a Map<Facility, Integer> where Key = Facility
+	// and Integer = quantity
+	@GetMapping(path = "ppe/{ppeId}/facilities")
+	public List<FacilityPPE> findListOfFacilityPPEsByPPE(@PathVariable int ppeId) {
 		return ppeDAO.findFacPPEByPPE(ppeDAO.findPPEById(ppeId));
 	}
+
 	// TEST PASSED (FOR TAKING OUT INVENTORY, {quantity} must be a negative number
 	// update FacilityPPE qty
 	@PatchMapping(path = "facilities/{fid}/ppe/{ppeId}/{quantity}")
@@ -61,34 +65,36 @@ public class PpeController {
 			@PathVariable int quantity) {
 		return ppeDAO.updateFacilityPPE(fid, ppeId, quantity);
 	}
+
 	// TEST PASSED
-	//find ppe by id
+	// find ppe by id
 	@GetMapping(path = "ppe/{pid}")
 	public PersonalProtectiveEquipment getPPEById(@PathVariable int pid) {
 		return ppeDAO.findPPEById(pid);
 	}
-	
+
+	//TEST PASSED
 	// find all ppes
 	@GetMapping(path = "ppe")
 	public List<PersonalProtectiveEquipment> findAllPPE() {
 		return ppeDAO.findAllPPE();
 	}
 	
-	//TEST PASSED
 	// create PPE
 	@PostMapping(path = "ppe")
-	public PersonalProtectiveEquipment createPPE(@RequestBody PersonalProtectiveEquipment ppe,HttpServletRequest req, HttpServletResponse resp) {
+	public PersonalProtectiveEquipment createPPE(@RequestBody PersonalProtectiveEquipment ppe, HttpServletRequest req,
+			HttpServletResponse resp) {
 		PersonalProtectiveEquipment newPpe = ppeDAO.createPPE(ppe);
-		
+
 		if (newPpe == null) {
 			resp.setStatus(400);
 		} else {
 			resp.setStatus(202);
 		}
-		
+
 		return newPpe;
 	}
-	
+
 	// TEST PASSED
 	// update PPE
 	@PatchMapping(path = "ppe")
