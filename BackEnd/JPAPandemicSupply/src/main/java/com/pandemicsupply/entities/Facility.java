@@ -2,12 +2,15 @@ package com.pandemicsupply.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Facility {
@@ -15,9 +18,12 @@ public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "address_id")
-	private int addressId;
+	
 	private String name;
+	
+	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name="address_id")
+    private Address address;
 	
 	@OneToMany(mappedBy = "facility")
 	private List<FacilityRoom> facilityRoomsInventory;
@@ -39,6 +45,18 @@ public class Facility {
 	
 	
 	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public List<FacilityRoom> getFacilityRoomsInventory() {
+		return facilityRoomsInventory;
+	}
+	public void setFacilityRoomsInventory(List<FacilityRoom> facilityRoomsInventory) {
+		this.facilityRoomsInventory = facilityRoomsInventory;
+	}
 	public List<FacilityTestKit> getTestKits() {
 		return testKits;
 	}
@@ -75,23 +93,20 @@ public class Facility {
 	public int getId() {
 		return id;
 	}
-	public int getAddressId() {
-		return addressId;
-	}
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + addressId;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((facilityCleaningProducts == null) ? 0 : facilityCleaningProducts.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((masks == null) ? 0 : masks.hashCode());
@@ -107,7 +122,10 @@ public class Facility {
 		if (getClass() != obj.getClass())
 			return false;
 		Facility other = (Facility) obj;
-		if (addressId != other.addressId)
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
 			return false;
 		if (facilityCleaningProducts == null) {
 			if (other.facilityCleaningProducts != null)
@@ -133,14 +151,22 @@ public class Facility {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Facility [id=");
 		builder.append(id);
-		builder.append(", addressId=");
-		builder.append(addressId);
 		builder.append(", name=");
 		builder.append(name);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", facilityRoomsInventory=");
+		builder.append(facilityRoomsInventory);
 		builder.append(", facilityCleaningProducts=");
 		builder.append(facilityCleaningProducts);
 		builder.append(", masks=");
 		builder.append(masks);
+		builder.append(", ventilators=");
+		builder.append(ventilators);
+		builder.append(", ppes=");
+		builder.append(ppes);
+		builder.append(", testKits=");
+		builder.append(testKits);
 		builder.append("]");
 		return builder.toString();
 	}
