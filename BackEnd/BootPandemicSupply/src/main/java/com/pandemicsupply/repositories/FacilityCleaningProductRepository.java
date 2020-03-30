@@ -11,4 +11,5 @@ import com.pandemicsupply.entities.FacilityCleaningProduct;
 public interface FacilityCleaningProductRepository extends JpaRepository<FacilityCleaningProduct, Integer> {
 	FacilityCleaningProduct findByFacilityAndCleaningProduct(Facility f, CleaningProduct cp);
 	List<FacilityCleaningProduct> findByCleaningProduct(CleaningProduct cp);
+	List<FacilityCleaningProduct> findByFacility(Facility f);
 }
